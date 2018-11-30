@@ -56,6 +56,9 @@ class Navigation extends Component {
                   <DropdownItem>
                     <NavLink href="https://github.com/alizand1992">Github (Ali)</NavLink>
                   </DropdownItem>
+                  <DropdownItem>
+                    <NavLink href="https://github.com/SangT">Github (Sang)</NavLink>
+                  </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
             </Nav>

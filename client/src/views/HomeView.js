@@ -9,18 +9,12 @@ import three from "./three.jpg";
 const items = [
     {
         src: one,
-        caption: "Slide 1",
-        header: "Team 08 - CPME131"
     },
     {
         src: two,
-        caption: "Slide 2",
-        header: "Team 08 - CPME131"
     },
     {
         src: three,
-        caption: "Slide 3",
-        header: "Team 08 - CPME131"
     }
 ];
 
