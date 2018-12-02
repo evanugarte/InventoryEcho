@@ -7,17 +7,20 @@ import two from "./two.jpg";
 import three from "./three.jpg";
 
 const items = [
-    {
-        src: one,
-    },
-    {
-        src: two,
-    },
-    {
-        src: three,
-    }
+  {
+    src: one,
+    caption: ""
+  },
+  {
+    src: two,
+    caption: ""
+  },
+  {
+    src: three,
+    caption: ""
+  }
 ];
 
-const HomeView = () => <UncontrolledCarousel items={items} />;
+const HomeView = () => <UncontrolledCarousel captionText={items.caption} items={items} />;
 
 export default HomeView;

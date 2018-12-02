@@ -17,6 +17,12 @@ class SearchBar extends Component {
     console.log(e.target.value);
   }
 
+  handleKeyDown = (e) => {
+    if (e.which === 13) {
+      e.preventDefault();
+    }
+  }
+
   onSearchClick = () => {
     //NOTE: we assume user will search for name
     // submit query as object with to sendQuery at queryActions.js
@@ -42,6 +48,8 @@ class SearchBar extends Component {
                   type="input"
                   className="form-control"
                   name="name"
+                  placeholder="Search by name here..."
+                  onKeyDown={this.handleKeyDown}
                   value={this.state.query}
                   onChange={this.onChange}
                 />
@@ -50,7 +58,7 @@ class SearchBar extends Component {
             <div className="input-group-append">
               <Link to="/search">
                 <button
-                  className="btn btn-outline-secondary"
+                  className="btn btn-info"
                   type="button"
                   onClick={this.onSearchClick}
                 >

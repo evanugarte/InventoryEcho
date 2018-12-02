@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Container, ListGroup } from "reactstrap";
-import { TransitionGroup } from "react-transition-group";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
-import { getItems } from "../actions/itemActions";
+import { getItems, deleteItem } from "../actions/itemActions";
 import PropTypes from "prop-types";
 
 import Item from "./Item";
@@ -41,8 +41,15 @@ class InventoryList extends Component {
         <ListGroup>
           <TransitionGroup>
             {items.map((item) => (
-              <React.Fragment>
-                <Item id={this.indexID % 2} key={item.name} item={item} toggleShowEditModal={this.toggleShowEditModal} />
+              <React.Fragment key={item._id}>
+                <CSSTransition key={item._id} timeout={500} classNames="fade">
+                  <Item
+                    id={this.indexID % 2}
+                    key={item.name}
+                    item={item}
+                    toggleShowEditModal={this.toggleShowEditModal}
+                  />
+                </CSSTransition>
                 {this.incrementIndex()}
               </React.Fragment>
             ))}
@@ -64,5 +71,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps,
-  { getItems }
+  { getItems, deleteItem }
 )(InventoryList);
