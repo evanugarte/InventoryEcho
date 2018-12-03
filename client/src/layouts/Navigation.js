@@ -70,7 +70,10 @@ class Navigation extends Component {
                     </NavLink>
                   </DropdownItem>
                   <DropdownItem>
-                    <NavLink href="https://github.com/SangT" target="_blank">
+                    <NavLink
+                      href="https://github.com/SangT"
+                      target="_blank"
+                    >
                       Github (Sang)
                     </NavLink>
                   </DropdownItem>
@@ -81,9 +84,6 @@ class Navigation extends Component {
                     >
                       Github (Saloni)
                     </NavLink>
-                  </DropdownItem>
-                  <DropdownItem>
-                    <NavLink href="https://github.com/SangT">Github (Sang)</NavLink>
                   </DropdownItem>
                 </DropdownMenu>
               </Dropdown>

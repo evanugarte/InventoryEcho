@@ -9,15 +9,18 @@ import three from "./three.jpg";
 const items = [
     {
         src: one,
+        caption: "photo1"
     },
     {
         src: two,
+        caption: "photo2"
     },
     {
         src: three,
+        caption: "photo3"
     }
 ];
 
-const HomeView = () => <UncontrolledCarousel items={items} />;
+const HomeView = () => <UncontrolledCarousel captionText={items.caption} items={items} />;
 
 export default HomeView;

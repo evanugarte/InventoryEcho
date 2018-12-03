@@ -14,7 +14,7 @@ You need **Node.js** and **Redux DevTools** prior to installing.
 
 ### Installing
 
-* This folder has it's own dependencies, seperate from that of the main iEcho folder. 
+* This folder has it's own dependencies, separate from that of the main iEcho folder.
 * They can be installed with `npm run client-install` from the iEcho root directory.
 
 
