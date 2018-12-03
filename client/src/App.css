@@ -28,3 +28,13 @@
   opacity: 0.01;
   transition: opacity 200ms ease-out;
 }
+
+#itemtype-1{
+background-color: #eaeaea;
+color: black;
+}
+
+#itemtype-0{
+background-color: #dadada;
+color: black;
+}

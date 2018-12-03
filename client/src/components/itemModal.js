@@ -11,6 +11,10 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import { addItem } from "../actions/itemActions";
+import {
+  validateNumericalEntry,
+  validateWholeNumericalEntry
+} from "./../helpers/helpers";
 
 class ItemModal extends Component {
   state = {
@@ -19,7 +23,8 @@ class ItemModal extends Component {
     quantity: 0,
     purchasePrice: 0,
     sellPrice: 0,
-    barcode: "",
+    description: "",
+    barcode: ""
   };
 
   toggle = () => {
@@ -33,10 +38,10 @@ class ItemModal extends Component {
     if (e.key === "Enter") {
       e.preventDefault();
     }
-  }
+  };
 
   onChange = (e) => {
-    //If the enter key wasn't hit, then we simply save the data of the textbox 
+    //If the enter key wasn't hit, then we simply save the data of the textbox
     this.setState({ [e.target.id]: e.target.value });
   };
 
@@ -44,13 +49,41 @@ class ItemModal extends Component {
     e.preventDefault();
 
     const newItem = this.state;
+    if (this.state.name !== "") {
+      if (
+        validateWholeNumericalEntry(this.state.barcode) &&
+        validateWholeNumericalEntry(this.state.quantity) &&
+        validateNumericalEntry(this.state.sellPrice) &&
+        validateNumericalEntry(this.state.purchasePrice)
+      ) {
+        //Use ItemActions.js to add item
+        this.props.addItem(newItem);
 
-    //Use ItemActions.js to add item
-    this.props.addItem(newItem);
-
-    //close the modal
-    this.toggle();
+        //close the modal
+        this.toggle();
+      } else {
+        alert("Could not add item: Invalid Entries in Fields.");
+      }
+    } else {
+      alert("Please specify a name for your product.");
+    }
   };
+
+  getClass = (id) => {
+    if (!id.includes("quantity") && !id.includes("Price")) {
+      return "word";
+    } else {
+      return "number";
+    }
+  }
+
+  getStep = (id) => {
+    if (id.includes("quantity")) {
+      return "1";
+    } else {
+      return "0.01";
+    }
+  }
 
   render() {
     const itemFields = [
@@ -59,7 +92,8 @@ class ItemModal extends Component {
       { name: "Purchase Price", id: "purchasePrice" },
       { name: "Sell Price", id: "sellPrice" },
       { name: "Barcode", id: "barcode" },
-    ]
+      { name: "Description", id: "description" }
+    ];
     return (
       <div>
         <Button
@@ -76,13 +110,13 @@ class ItemModal extends Component {
           <ModalBody>
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
-                {itemFields.map((item) =>
-                  <React.Fragment
-                    key={item.id}>
-                    <Label
-                      for={item.id}>{item.name}</Label>
+                {(itemFields.map((item) => (
+                  <React.Fragment key={item.id}>
+                    <Label for={item.id}>{item.name}</Label>
                     <Input
-                      type="text"
+                      type={this.getClass(item.id)}
+                      min="0"
+                      step={this.getStep(item.id)}
                       name={item.id}
                       id={item.id}
                       onKeyDown={this.handleKeyDown}
@@ -90,7 +124,7 @@ class ItemModal extends Component {
                       onChange={this.onChange}
                     />
                   </React.Fragment>
-                )}
+                )))}
                 <Button color="dark" style={{ marginTop: "2rem" }} block>
                   Publish
                 </Button>

@@ -17,9 +17,8 @@ class InventoryView extends Component {
         <div className="app">
           <Container>
             <ItemModal />
-            <InventoryList />
             <SearchBar />
-            <ItemModal />
+            <InventoryList />
           </Container>
         </div>
       </Provider>

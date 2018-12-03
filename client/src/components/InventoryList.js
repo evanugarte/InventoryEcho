@@ -9,10 +9,14 @@ import Item from "./Item";
 import ItemEditModal from "./ItemEditModal";
 
 class InventoryList extends Component {
-  state = {
-    showEditModal: false,
-    itemToEdit: null
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      showEditModal: false,
+      itemToEdit: null
+    };
+    this.indexID = 1;
+  }
 
   componentDidMount() {
     this.props.getItems();
@@ -25,6 +29,10 @@ class InventoryList extends Component {
     })
   };
 
+  incrementIndex = () => {
+    this.indexID++;
+  }
+
   render() {
     const { items } = this.props.item;
     return (
@@ -33,7 +41,10 @@ class InventoryList extends Component {
         <ListGroup>
           <TransitionGroup>
             {items.map((item) => (
-              <Item key={item.name} item={item} toggleShowEditModal={this.toggleShowEditModal} />
+              <React.Fragment>
+                <Item id={this.indexID % 2} key={item.name} item={item} toggleShowEditModal={this.toggleShowEditModal} />
+                {this.incrementIndex()}
+              </React.Fragment>
             ))}
           </TransitionGroup>
         </ListGroup>

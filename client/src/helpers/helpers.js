@@ -5,6 +5,14 @@ const moneyFormat = (value) => {
   }).format(value);
 };
 
+const validateNumericalEntry = (value) => {
+  return value >= 0;
+}
+
+const validateWholeNumericalEntry = (value) => {
+  return value >= 0 && !value.toString().includes(".");
+}
+
 module.exports = {
-  moneyFormat,
+  moneyFormat, validateNumericalEntry, validateWholeNumericalEntry
 };

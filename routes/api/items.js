@@ -35,6 +35,9 @@ router.post("/", (req, res) => {
   if (parseInt(req.body.barcode, 10) > -1) {
     newItem.barcode = req.body.barcode;
   }
+  if (req.body.description) {
+    newItem.description = req.body.description;
+  }
 
   //If an ID was passed, then we will look for the item by the passed ID and try to updae it
   if (req.body._id) {

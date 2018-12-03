@@ -14,7 +14,7 @@ class ItemSearch extends Component {
   toggleShowEditModal = (itemToEdit) => {
     this.setState({
       showEditModal: !this.state.showEditModal,
-      itemToEdit: { itemToEdit },
+      itemToEdit: itemToEdit,
     });
   };
 

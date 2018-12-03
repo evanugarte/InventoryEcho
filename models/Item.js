@@ -24,6 +24,10 @@ const ItemSchema = new Schema({
     type: Number,
     default: 0
   },
+  description: {
+    type: String,
+    default: "No Description Set."
+  },
   barcode: {
     type: String,
     default: ""

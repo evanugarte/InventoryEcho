@@ -11,14 +11,13 @@ import {
   Dropdown,
   DropdownItem,
   DropdownToggle,
-  DropdownMenu,
+  DropdownMenu
 } from "reactstrap";
-
 
 class Navigation extends Component {
   state = {
     isOpen: false,
-    dropdownOpen: false,
+    dropdownOpen: false
   };
 
   toggle = () => {
@@ -26,7 +25,7 @@ class Navigation extends Component {
   };
 
   toggleDropdown = () => {
-    this.setState({ dropdownOpen : !this.state.dropdownOpen });
+    this.setState({ dropdownOpen: !this.state.dropdownOpen });
   };
 
   render() {
@@ -45,16 +44,43 @@ class Navigation extends Component {
             </Nav>
 
             <Nav className="ml-auto" nav>
-              <Dropdown navbar isOpen={this.state.dropdownOpen} toggle={this.toggleDropdown}>
+              <Dropdown
+                navbar
+                isOpen={this.state.dropdownOpen}
+                toggle={this.toggleDropdown}
+              >
                 <DropdownToggle navbar caret>
                   GitHub
                 </DropdownToggle>
                 <DropdownMenu dark>
                   <DropdownItem>
-                    <NavLink href="https://github.com/evanugarte">Github (Evan)</NavLink>
+                    <NavLink
+                      href="https://github.com/evanugarte"
+                      target="_blank"
+                    >
+                      Github (Evan)
+                    </NavLink>
                   </DropdownItem>
                   <DropdownItem>
-                    <NavLink href="https://github.com/alizand1992">Github (Ali)</NavLink>
+                    <NavLink
+                      href="https://github.com/alizand1992"
+                      target="_blank"
+                    >
+                      Github (Ali)
+                    </NavLink>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <NavLink href="https://github.com/SangT" target="_blank">
+                      Github (Sang)
+                    </NavLink>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <NavLink
+                      href="https://github.com/salonim12"
+                      target="_blank"
+                    >
+                      Github (Saloni)
+                    </NavLink>
                   </DropdownItem>
                   <DropdownItem>
                     <NavLink href="https://github.com/SangT">Github (Sang)</NavLink>
@@ -62,9 +88,8 @@ class Navigation extends Component {
                 </DropdownMenu>
               </Dropdown>
             </Nav>
-        </Collapse>
-        <NavbarToggler onClick={this.toggle} />
-
+          </Collapse>
+          <NavbarToggler onClick={this.toggle} />
         </Container>
       </Navbar>
     );

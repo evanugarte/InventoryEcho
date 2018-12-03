@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ListGroupItem, Button } from "reactstrap";
+import { ListGroupItem, Button, Row, Col } from "reactstrap";
 import { CSSTransition } from "react-transition-group";
 import { moneyFormat } from "../helpers/helpers";
 import { deleteItem } from "../actions/itemActions";
@@ -20,12 +20,23 @@ class Item extends Component {
     return (
       <CSSTransition key={this.state._id} timeout={500} classNames="fade">
         <React.Fragment>
-          <ListGroupItem >
+          <ListGroupItem id={`itemtype-${this.props.id}`}>
             <div style={{ display: "inline-block", width: "90%" }}>
               <div style={{ float: "left" }} onClick={this.props.toggleShowEditModal.bind(this, this.state)}>
-                {this.state.name}<br />
-                {this.state.quantity}<br />
-                {moneyFormat(this.state.sellPrice)}
+                <Row>
+                  <h3>{this.state.name}</h3>
+                </Row>
+                <Row>
+                  <Col>
+                    <p>Quantity: {this.state.quantity}</p>
+                  </Col>
+                  <Col>
+                    <p>Sale Price: {moneyFormat(this.state.sellPrice)}</p>
+                  </Col>
+                </Row>
+                <Row>
+                  {!this.state.description.includes("No Description Set") ? <p style={{ fontStyle: "italic" }}>{this.state.description} </p> : ""}
+                </Row>
               </div>
               <Button className={"btn btn-danger float-right"}
                 onClick={this.onDeleteClick.bind(this, this.state._id)}

@@ -34,6 +34,8 @@ With Node and Redux DevTools installed, clone this repository with
 *All work up to today*
 **Evan Ugarte** - [evanugarte](https://github.com/evanugarte)
 **Ali Zand** - [alizand1992](https://github.com/alizand1992)
+**Saloni Madaan** - [salonim12](https://github.com/salonim12)
+**Sang To** - [SangT](https://github.com/SangT)
 
 ## Acknowledgments
 
