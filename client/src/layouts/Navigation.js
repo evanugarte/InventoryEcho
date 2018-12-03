@@ -30,10 +30,10 @@ class Navigation extends Component {
 
   render() {
     return (
-      <Navbar color="dark" dark expand="sm">
+      <Navbar color="dark" dark={true} expand="sm">
         <Container>
           <NavbarBrand href="/">iEcho</NavbarBrand>
-          <Collapse isOpen={this.state.isOpen} navbar>
+          <Collapse isOpen={this.state.isOpen} navbar={true}>
             <Nav className="mr-auto" navbar>
               <NavItem>
                 <NavLink href="inventory">Inventory Mode</NavLink>
@@ -43,16 +43,16 @@ class Navigation extends Component {
               </NavItem>
             </Nav>
 
-            <Nav className="ml-auto" nav>
+            <Nav className="ml-auto" nav="true">
               <Dropdown
-                navbar
+                navbar="true"
                 isOpen={this.state.dropdownOpen}
                 toggle={this.toggleDropdown}
               >
-                <DropdownToggle navbar caret>
+                <DropdownToggle navbar="true" caret>
                   GitHub
                 </DropdownToggle>
-                <DropdownMenu dark>
+                <DropdownMenu dark="true">
                   <DropdownItem>
                     <NavLink
                       href="https://github.com/evanugarte"
