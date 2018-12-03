@@ -29,6 +29,15 @@ class InventoryList extends Component {
     })
   };
 
+  handleEmptyInventory = () => {
+    const { items } = this.props.item;
+    if (items === 0) {
+      return <p>Your list is empty. Try refreshing the page or adding an item.</p>;
+    } else {
+      return;
+    }
+  }
+
   incrementIndex = () => {
     this.indexID++;
   }
@@ -53,6 +62,7 @@ class InventoryList extends Component {
                 {this.incrementIndex()}
               </React.Fragment>
             ))}
+            {this.handleEmptyInventory()}
           </TransitionGroup>
         </ListGroup>
       </Container>
