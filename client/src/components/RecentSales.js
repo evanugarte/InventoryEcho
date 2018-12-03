@@ -22,16 +22,18 @@ class RecentSales extends Component {
       <Container>
         <ListGroup>
           <TransitionGroup>
-            <Button onClick={this.deleteAllItems}>Clear All Sold Items</Button>
-            {items.map((item) => (
-              <CSSTransition key={item._id} timeout={500} classNames="fade">
-                <ListGroupItem>
-                  <h2>{item.name}</h2>
-                  <p>Quantity Sold: {item.quantity}, Price: {moneyFormat(item.sellPrice)}</p>
-                  <p>barcode: {item.barcode}</p>
-                </ListGroupItem>
-              </CSSTransition>
-            ))}
+            <React.Fragment>
+              <Button onClick={this.deleteAllItems}>Clear All Sold Items</Button>
+              {items.map((item) => (
+                <CSSTransition key={item._id} timeout={500} classNames="fade">
+                  <ListGroupItem>
+                    <h2>{item.name}</h2>
+                    <p>Quantity Sold: {item.quantity}, Price: {moneyFormat(item.sellPrice)}</p>
+                    <p>barcode: {item.barcode}</p>
+                  </ListGroupItem>
+                </CSSTransition>
+              ))}
+            </React.Fragment>
           </TransitionGroup>
         </ListGroup>
       </Container>

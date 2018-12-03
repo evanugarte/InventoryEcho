@@ -11,27 +11,24 @@ import {
 } from "reactstrap";
 import { moneyFormat } from "./../helpers/helpers";
 import { connect } from "react-redux";
-import { addItem } from "../actions/itemActions";
+import { addItem, deleteItem } from "../actions/itemActions";
 import PropTypes from "prop-types";
 
 class ItemEditModal extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showEditModal: this.props.showEditModal,
-      editActive: false,
-      previouslyEdited: false,
-      item: {
-        name: null,
-        quantity: null,
-        sellPrice: null,
-        purchasePrice: null,
-        barcode: null,
-        description: null,
-        _id: null
-      }
-    };
-  }
+  state = {
+    showEditModal: this.props.showEditModal,
+    editActive: false,
+    previouslyEdited: false,
+    //Item Fields
+    name: null,
+    quantity: null,
+    sellPrice: null,
+    purchasePrice: null,
+    barcode: null,
+    description: null,
+    _id: null,
+  };
+  itemDeleted = false;
 
   handleKeyDown = (e) => {
     //Prevent the form being submitted by hitting the enter button
@@ -78,7 +75,7 @@ class ItemEditModal extends Component {
       }
     ];
     //Decide whether to render item data or textboxes to edit item data
-    if (this.state.editActive) {
+    if (this.state.editActive && !this.itemDeleted) {
       //If edit button is enabled
       return (
         <React.Fragment>
@@ -102,22 +99,35 @@ class ItemEditModal extends Component {
               />
             </React.Fragment>
           )}
+          <Button color="danger" onClick={this.onDeleteClick.bind(this, this.props.item._id)}>Delete Item</Button>
         </React.Fragment>
       );
-    } else {
+    } else if (!this.itemDeleted) {
       //If edit button isn't enabled
       return (
         <React.Fragment>
-          <h3>{this.props.item.name}</h3>
-          <p>Qunantity: {this.props.item.quantity}</p>
-          <p>Purchase Price: {moneyFormat(this.props.item.purchasePrice)}</p>
-          <p>Sell Price: {moneyFormat(this.props.item.sellPrice)}</p>
-          <p>Barcode: {this.props.item.barcode}</p>
-          <p>Description: {this.props.item.description}</p>
+          <h3>{this.state.name ? this.state.name : this.props.item.name}</h3>
+          <p>Quantity: {this.state.quantity ? this.state.quantity : this.props.item.quantity}</p>
+          <p>Purchase Price: {this.state.purchasePrice ? moneyFormat(this.state.purchasePrice) : moneyFormat(this.props.item.purchasePrice)}</p>
+          <p>Sell Price: {this.state.sellPrice ? moneyFormat(this.state.sellPrice) : moneyFormat(this.props.item.sellPrice)}</p>
+          <p>Barcode: {this.state.barcode ? this.state.barcode : this.props.item.barcode}</p>
+          <p>Description: {this.state.description ? this.state.description : this.props.item.description}</p>
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          <h3>Item Deleted. Close modal to see changes.</h3>
         </React.Fragment>
       );
     }
   };
+
+  onDeleteClick = (id) => {
+    this.props.deleteItem(id);
+    this.itemDeleted = true;
+    this.toggleEditMode();
+  }
 
   toggle = () => {
     this.setState({
@@ -134,15 +144,14 @@ class ItemEditModal extends Component {
 
   onChange = (e) => {
     this.setState({
-      item: {
-        [e.target.id]: e.target.value,
-        _id: this.props.item._id
-      }
+      [e.target.id]: e.target.value,
+      _id: this.props.item._id
     });
   };
 
   sumbitEdit = () => {
-    this.props.addItem(this.state.item);
+    const editedItem = this.state;
+    this.props.addItem(editedItem);
     this.toggleEditMode();
     this.setState({
       previouslyEdited: true
@@ -161,7 +170,9 @@ class ItemEditModal extends Component {
               <h2>Edit Item</h2>
               <Button onClick={this.toggleEditMode}>Edit</Button>
             </ModalHeader>
-            <ModalBody>{this.renderEditComponent()}</ModalBody>
+            <ModalBody>
+              {this.renderEditComponent()}
+            </ModalBody>
             <ModalFooter>
               {this.state.editActive ? (
                 <Button className={"btn btn-primary"} onClick={this.sumbitEdit}>
@@ -193,12 +204,14 @@ class ItemEditModal extends Component {
 
 ItemEditModal.propTypes = {
   addItem: PropTypes.func.isRequired,
-  item: PropTypes.object.isRequired
+  deleteItem: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => { };
+const mapStateToProps = (state) => ({
+  null: state.null
+});
 
 export default connect(
   mapStateToProps,
-  { addItem }
+  { addItem, deleteItem }
 )(ItemEditModal);

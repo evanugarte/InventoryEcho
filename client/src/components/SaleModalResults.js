@@ -22,7 +22,7 @@ class SaleModal extends Component {
     this.state = {
       searchResult: null,
       currentPrice: 0,
-      currentQuantity: 0,
+      currentQuantity: 1,
       soldItem: {
         name: "none",
         _id: "none",
@@ -33,6 +33,10 @@ class SaleModal extends Component {
       }
     };
     this.currentItem = null;
+  }
+
+  componentDidMount() {
+    this.updateSoldItem();
   }
 
   updateSoldItem = () => {
