@@ -21,7 +21,6 @@ class SearchDropdown extends Component {
       queryType: e.target.name
     });
     this.props.onChange(e);
-    console.log(e.target.name);
   });
 
   toggle = () => {

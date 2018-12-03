@@ -1,16 +1,43 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { sendQuery } from "../actions/itemActions";
+import { Input, InputGroup, InputGroupAddon } from "reactstrap";
 import { Link } from "react-router-dom";
+import SearchDropdown from "./SearchDropdown";
 
 class SearchBar extends Component {
   constructor() {
     super();
     this.state = {
       query: "",
+      queryType: "barcode",
       modalShow: false
     };
   }
+
+  handleQueryChange = (e) => {
+    this.setState({
+      queryType: e.target.value
+    });
+  }
+
+  sendBarcodeQuery = () => {
+    let newQuery = null;
+    console.log(this.state.queryType);
+    if (this.state.queryType === "barcode") {
+      newQuery = {
+        barcode: this.state.query
+      }
+    } else {
+      newQuery = {
+        name: this.state.query
+      }
+    }
+    this.props.sendQuery(newQuery);
+    console.log(newQuery);
+
+    this.setState({ query: "" });
+  };
 
   onChange = (e) => {
     this.setState({ query: e.target.value });
@@ -23,36 +50,28 @@ class SearchBar extends Component {
     }
   }
 
-  onSearchClick = () => {
-    //NOTE: we assume user will search for name
-    // submit query as object with to sendQuery at queryActions.js
-
-    const newQuery = {
-      name: this.state.query
-    };
-    this.props.sendQuery(newQuery);
-    console.log(newQuery);
-
-    this.setState({ query: "" });
-  }
-
   render() {
     return (
       <div>
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
           <div className="container">
-            <form onSubmit={this.onSearchClick.bind(this)}>
+            <form onSubmit={this.sendBarcodeQuery.bind(this)}>
               <div className="input-group mr-auto">
-                <input
-                  style={{ height: 36 }}
-                  type="input"
-                  className="form-control"
-                  name="name"
-                  placeholder="Search by name here..."
-                  onKeyDown={this.handleKeyDown}
-                  value={this.state.query}
-                  onChange={this.onChange}
-                />
+                <InputGroup>
+                  <InputGroupAddon addonType="prepend">
+                    <SearchDropdown onChange={this.handleQueryChange} />
+                  </InputGroupAddon>
+                  <Input
+                    style={{ height: 36 }}
+                    type="input"
+                    className="form-control"
+                    name="name"
+                    placeholder="Search by name here..."
+                    onKeyDown={this.handleKeyDown}
+                    value={this.state.query}
+                    onChange={this.onChange}
+                  />
+                </InputGroup>
               </div>
             </form>
             <div className="input-group-append">
@@ -60,7 +79,7 @@ class SearchBar extends Component {
                 <button
                   className="btn btn-info"
                   type="button"
-                  onClick={this.onSearchClick}
+                  onClick={this.sendBarcodeQuery}
                 >
                   Search
                     </button>

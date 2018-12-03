@@ -24,7 +24,6 @@ class BarcodeEntry extends Component {
 
   handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      console.log("helo");
       this.sendBarcodeQuery();
     }
   };
@@ -80,7 +79,7 @@ class BarcodeEntry extends Component {
         </InputGroup>
 
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Add To Inventory</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Sell Item</ModalHeader>
           <SaleModalResults toggle={this.toggle} />
         </Modal>
       </div>
