@@ -66,7 +66,7 @@ class SearchBar extends Component {
                     type="input"
                     className="form-control"
                     name="name"
-                    placeholder="Search by name here..."
+                    placeholder={`Search by ${this.state.queryType} here...`}
                     onKeyDown={this.handleKeyDown}
                     value={this.state.query}
                     onChange={this.onChange}
