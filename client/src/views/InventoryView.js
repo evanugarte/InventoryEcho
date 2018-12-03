@@ -15,13 +15,14 @@ class InventoryView extends Component {
     return (
       <Provider store={store}>
         <div className="app">
-          <Container>
+          <Container id="inventoryWelcome">
+            <h1 id="head1">Welcome to Inventory View! Let's take a look at your inventory...</h1>
             <ItemModal />
             <SearchBar />
             <InventoryList />
           </Container>
         </div>
-      </Provider>
+      </Provider >
     );
   }
 }

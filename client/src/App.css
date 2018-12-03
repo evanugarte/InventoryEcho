@@ -38,3 +38,35 @@ color: black;
 background-color: #dadada;
 color: black;
 }
+
+#inventoryWelcome{
+  font-size: .39cm;
+  background-image: url("back1.jpg");
+  background-size: contain;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif; 
+  height: 100%;
+}
+
+#saleWelcome {
+  color: black;
+  font-size: .37cm;
+  background-image: url("back2.jpg");
+  background-size: auto;
+  background-repeat: repeat;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  height: 100%;
+}
+
+#head1{
+  color: rgb(156, 33, 33);
+  font-size: .95cm;
+  font-style:italic;
+  font-weight:bold;
+}
+
+#head2{
+  color: rgb(231, 110, 153);
+  font-size: .95cm;
+  font-style:italic;
+  font-weight:bold;
+}

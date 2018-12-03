@@ -11,8 +11,8 @@ class SaleView extends Component {
     return (
       <Provider store={store}>
         <React.Fragment>
-          <Container>
-            <h1>Yahoo welcome to SaleView</h1>
+          <Container id="saleWelcome">
+            <h1 id="head2">Welcome to Sale View! Let's make a transaction!</h1>
             <BarcodeEntry />
             <RecentSales />
           </Container>
