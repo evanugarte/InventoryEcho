@@ -1,3 +1,6 @@
+/**
+ * This class represents the navbar at the top of iEcho
+ */
 import React, { Component } from "react";
 import {
   Collapse,

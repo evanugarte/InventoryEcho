@@ -1,3 +1,6 @@
+/**
+ * This class represents the sale view itself.
+ */
 import React, { Component } from "react";
 import InventoryList from "../components/InventoryList";
 import ItemModal from "../components/itemModal";

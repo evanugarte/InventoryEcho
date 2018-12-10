@@ -1,3 +1,7 @@
+/**
+ * This class represents the search results after the user searches for an item
+ * in the inventory view.
+ */
 import React, { Component } from "react";
 import { connect, Provider } from "react-redux";
 import { Row, Container } from "reactstrap"
@@ -11,6 +15,9 @@ class ItemSearch extends Component {
     itemToEdit: null
   };
 
+  /**
+   * Handle showing an edit modal if an item is rendered in the search result
+   */
   toggleShowEditModal = (itemToEdit) => {
     this.setState({
       showEditModal: !this.state.showEditModal,
@@ -48,6 +55,11 @@ class ItemSearch extends Component {
     return <div><h1>No Items Found.</h1></div>;
   }
 }
+
+/**
+ * THE BOTTOM TWO FUNCTIONS CONNECT OUR BACKEND
+ * PROP FUNCTIONS TO THE ACTIONS, REDUCERS, AND MONGODB
+ */
 const mapStateToProps = (state) => ({
   item: state.item
 });

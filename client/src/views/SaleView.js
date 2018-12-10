@@ -1,3 +1,6 @@
+/**
+ * This class represents the sale view itself.
+ */
 import React, { Component } from "react";
 import { Container } from "reactstrap";
 import BarcodeEntry from "./../components/BarcodeEntry";
@@ -7,6 +10,9 @@ import { Provider } from "react-redux";
 import store from "./../store";
 
 class SaleView extends Component {
+  /**
+   * Render the class component
+   */
   render() {
     return (
       <Provider store={store}>

@@ -1,3 +1,6 @@
+/**
+ * This class represents the searchbar that is seen in the sale view.
+ */
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { sendQuery } from "../actions/itemActions";
@@ -22,24 +25,40 @@ class BarcodeEntry extends Component {
     };
   }
 
+  /**
+   * This function handles an enter key pressed in the text box.
+   * @param e the event itself
+   */
   handleKeyPress = (e) => {
     if (e.key === "Enter") {
       this.sendBarcodeQuery();
     }
   };
 
+  /**
+   * This function handles a change in the text box.
+   * @param e the event itself
+   */
   handleChange = (e) => {
     this.setState({
       query: e.target.value
     });
   };
 
+  /**
+  * This function handles a change in the query drop down menu.
+  * @param e the event itself
+  */
   handleQueryChange = (e) => {
     this.setState({
       queryType: e.target.value
     });
   }
 
+  /**
+  * This function sends a query to our itemActions.js file,
+  * to search the database for an item either by barcode or name.
+  */
   sendBarcodeQuery = () => {
     let newQuery = null;
     if (this.state.queryType === "barcode") {
@@ -58,12 +77,18 @@ class BarcodeEntry extends Component {
     this.setState({ query: null });
   };
 
+  /**
+   * Toggles the sale modal either open or closed.
+   */
   toggle = () => {
     this.setState({
       modal: !this.state.modal
     });
   };
 
+  /**
+   * Render the class component
+   */
   render() {
     return (
       <div>
@@ -87,6 +112,10 @@ class BarcodeEntry extends Component {
   }
 }
 
+/**
+ * THE BOTTOM TWO FUNCTIONS CONNECT OUR BACKEND
+ * PROP FUNCTIONS TO THE ACTIONS, REDUCERS, AND MONGODB
+ */
 const mapStateToProps = state => ({
   query: state.query
 });

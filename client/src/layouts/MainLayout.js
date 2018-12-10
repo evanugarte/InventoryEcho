@@ -1,3 +1,7 @@
+/**
+ * This class is in charge of handling the routes in our application, so that going to
+ * certain URL endpoints are handled correctly.
+ */
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 

@@ -1,3 +1,7 @@
+/**
+ * This file specifies our constant types so that
+ * redux can be aware of our application's state.
+ */
 //Inventory Item Types
 export const GET_ITEMS = "GET_ITEMS";
 export const ADD_ITEM = "ADD_ITEM";

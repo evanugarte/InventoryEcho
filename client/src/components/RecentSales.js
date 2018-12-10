@@ -23,7 +23,8 @@ class RecentSales extends Component {
         <ListGroup>
           <TransitionGroup>
             <React.Fragment>
-              <Button onClick={this.deleteAllItems}>Clear All Sold Items</Button>
+              <h1 style={{ "margin-top": "2rem" }}>Recently Sold Items:</h1>
+              <Button className="add-btn" onClick={this.deleteAllItems}>Clear All Sold Items</Button>
               {items.map((item) => (
                 <CSSTransition key={item._id} timeout={500} classNames="fade">
                   <ListGroupItem>

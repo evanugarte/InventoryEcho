@@ -1,3 +1,6 @@
+/**
+ * This class represents the Add Item modal that appears when the user wishes to add an item.
+ */
 import React, { Component } from "react";
 import {
   Button,
@@ -27,12 +30,19 @@ class ItemModal extends Component {
     barcode: ""
   };
 
+  /**
+   * Toggles the add modal either open or closed.
+   */
   toggle = () => {
     this.setState({
       modal: !this.state.modal
     });
   };
 
+  /**
+   * This function handles an enter key pressed in the text box.
+   * @param e the event itself
+   */
   handleKeyDown = (e) => {
     //Prevent the form being submitted by hitting the enter button
     if (e.key === "Enter") {
@@ -40,11 +50,20 @@ class ItemModal extends Component {
     }
   };
 
+
+  /**
+   * This function handles a change in the text box.
+   * @param e the event itself
+   */
   onChange = (e) => {
     //If the enter key wasn't hit, then we simply save the data of the textbox
     this.setState({ [e.target.id]: e.target.value });
   };
 
+  /**
+   * This function handles a user submitting a new item.
+   * @param e the event itself
+   */
   onSubmit = (e) => {
     e.preventDefault();
 
@@ -69,6 +88,10 @@ class ItemModal extends Component {
     }
   };
 
+  /**
+   * This item is a helper method to ensure that the proper
+   * textbox is either a word or numerical entry
+   */
   getClass = (id) => {
     if (!id.includes("quantity") && !id.includes("Price")) {
       return "word";
@@ -77,6 +100,9 @@ class ItemModal extends Component {
     }
   }
 
+  /**
+   * This is a helper function to return the proper textbox attributes based on item fields
+   */
   getStep = (id) => {
     if (id.includes("quantity")) {
       return "1";
@@ -85,6 +111,9 @@ class ItemModal extends Component {
     }
   }
 
+  /**
+   * Render the class component
+   */
   render() {
     const itemFields = [
       { name: "Name", id: "name" },
@@ -137,6 +166,10 @@ class ItemModal extends Component {
   }
 }
 
+/**
+ * THE BOTTOM TWO FUNCTIONS CONNECT OUR BACKEND
+ * PROP FUNCTIONS TO THE ACTIONS, REDUCERS, AND MONGODB
+ */
 const mapStateToProps = (state) => ({
   item: state.item
 });

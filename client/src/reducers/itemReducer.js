@@ -1,3 +1,4 @@
+//Import the constant types from our actions folder
 import {
   GET_ITEMS,
   ADD_ITEM,
@@ -13,6 +14,12 @@ const initialState = {
   loading: false
 };
 
+/**
+ * This function handles the state of our application, based on the actions
+ * taken from saleActions.js in the actions folder.
+ * @param state in charge of handling the array of sold items from mongoDB
+ * @param action specifies which action is to be carried out
+ */
 export default function (state = initialState, action) {
   switch (action.type) {
     case GET_ITEMS:
