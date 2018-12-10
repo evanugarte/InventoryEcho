@@ -1,3 +1,7 @@
+/**
+ * This class represents the modal that pops up with a user searching for an item
+ * to sell in the sale view
+ */
 import React, { Component } from "react";
 import { connect, Provider } from "react-redux";
 import { addItem } from "../actions/itemActions";
@@ -35,10 +39,19 @@ class SaleModal extends Component {
     this.currentItem = null;
   }
 
+
+  /**
+   * This function is called as soon as the component renders.
+   * When it is called, it makes sure that all the fields presented to 
+   * the user are up to date.
+   */
   componentDidMount() {
     this.updateSoldItem();
   }
 
+  /**
+   * This function handles a user changing an items quantity depending on its sale
+   */
   updateSoldItem = () => {
     setTimeout(
       function () {
@@ -59,6 +72,10 @@ class SaleModal extends Component {
     );
   }
 
+  /**
+   * This function updates the total price to be charged for 
+   * an items sale.
+   */
   updateTotal = () => {
     setTimeout(
       function () {
@@ -74,6 +91,11 @@ class SaleModal extends Component {
 
   }
 
+  /**
+   * This function handles a change if the current quantity
+   * is changed that is to be sold.
+   * @param e the event itself
+   */
   handleChange = (e) => {
     this.setState({
       currentQuantity: e.target.value
@@ -82,6 +104,11 @@ class SaleModal extends Component {
     this.updateSoldItem();
   };
 
+  /**
+   * This function takes in the search result from the BarcodeEntry.js component
+   * @param itemQuery an array of values, we take the first one as that is the closest
+   * match to a query
+   */
   formatResults = (itemQuery) => {
     this.currentItem = itemQuery[0];
     return (
@@ -111,12 +138,21 @@ class SaleModal extends Component {
     );
   };
 
+  /**
+   * This function ensures that the user entered a numerical
+   * value in the textbox
+   * @param e the event itself
+   */
   handleKeyDown = (e) => {
     if ((e.key === "Enter" || e.which < 37 || e.which > 57) && e.which !== 8) {
       e.preventDefault();
     }
   }
 
+  /**
+   * This function is called when the user is satisfied with a sale and
+   * wishes to carry out the purchase.
+   */
   submitSaleResult = () => {
     //We need to verify that the quantity entered is within reasonable bounds
     if (this.currentItem.quantity >= this.state.currentQuantity && validateWholeNumericalEntry(this.state.currentQuantity)) {
@@ -130,6 +166,9 @@ class SaleModal extends Component {
     }
   };
 
+  /**
+   * Render class component
+   */
   render() {
     const { itemQuery } = this.props.item;
 
@@ -183,6 +222,10 @@ class SaleModal extends Component {
   }
 }
 
+/**
+ * THE BOTTOM TWO FUNCTIONS CONNECT OUR BACKEND
+ * PROP FUNCTIONS TO THE ACTIONS, REDUCERS, AND MONGODB
+ */
 const mapStateToProps = state => ({
   item: state.item,
   soldItem: state.soldItem

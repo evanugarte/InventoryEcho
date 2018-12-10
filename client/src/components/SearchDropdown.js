@@ -1,3 +1,6 @@
+/**
+ * This class represents the dropdown menu next to both search boxes in both sale and inventory mode.
+ */
 import React, { Component } from "react";
 import {
   ButtonDropdown,
@@ -16,6 +19,10 @@ class SearchDropdown extends Component {
     ]
   };
 
+  /**
+   * Handles the change in querytype (name or barcode)
+   * @param e event of changing dropdown query type
+   */
   onChange = ((e) => {
     this.setState({
       queryType: e.target.name
@@ -23,6 +30,9 @@ class SearchDropdown extends Component {
     this.props.onChange(e);
   });
 
+  /**
+   * Handle dropdown open or closed for reactstrap
+   */
   toggle = () => {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen

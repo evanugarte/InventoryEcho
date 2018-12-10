@@ -1,3 +1,7 @@
+/**
+ * This class represents the modal appears when the user clicks
+ * "Edit" on an item component.
+ */
 import React, { Component } from "react";
 import {
   Button,
@@ -30,6 +34,10 @@ class ItemEditModal extends Component {
   };
   itemDeleted = false;
 
+  /**
+   * This function handles an enter key pressed in the text box.
+   * @param e the event itself
+   */
   handleKeyDown = (e) => {
     //Prevent the form being submitted by hitting the enter button
     if (e.key === "Enter") {
@@ -37,6 +45,11 @@ class ItemEditModal extends Component {
     }
   };
 
+  /**
+   * This is a helper to make sure that the proper
+   * textbox is rendered for editing an item.
+   * @param id item id
+   */
   getClass = (id) => {
     if (!id.includes("quantity") && !id.includes("Price")) {
       return "word";
@@ -45,6 +58,11 @@ class ItemEditModal extends Component {
     }
   }
 
+  /**
+ * This is a helper to make sure that the proper
+ * textbox is rendered for editing an item.
+ * @param id item id
+ */
   getStep = (id) => {
     if (id.includes("quantity")) {
       return "1";
@@ -53,6 +71,11 @@ class ItemEditModal extends Component {
     }
   }
 
+  /**
+ * This is a helper to make sure that either the textboxes are rendered
+ * or if merely <p> tags should be shown for an item's data in the modal.
+ * @param id item id
+ */
   renderEditComponent = () => {
     const itemValues = [
       { name: "Name", value: this.props.item.name, id: "name" },
@@ -123,18 +146,28 @@ class ItemEditModal extends Component {
     }
   };
 
+  /**
+   * Handle a user clicking the delete button
+   * @param id item id to send a delete request for
+   */
   onDeleteClick = (id) => {
     this.props.deleteItem(id);
     this.itemDeleted = true;
     this.toggleEditMode();
   }
 
+  /**
+   * Toggles the edit modal either open or closed.
+   */
   toggle = () => {
     this.setState({
       showEditModal: !this.state.showEditModal
     });
   };
 
+  /**
+   * Toggles the edit mode either on or off.
+   */
   toggleEditMode = () => {
     this.setState({
       editActive: !this.state.editActive,
@@ -142,6 +175,10 @@ class ItemEditModal extends Component {
     });
   };
 
+  /**
+   * This function handles a change in the text box.
+   * @param e the event itself
+   */
   onChange = (e) => {
     this.setState({
       [e.target.id]: e.target.value,
@@ -149,6 +186,12 @@ class ItemEditModal extends Component {
     });
   };
 
+
+  /**
+   * This function handles a user submitting an edited item for updating.
+   * It sends a post request with addItem to itemActions to update the item 
+   * in mongoDB.
+   */
   sumbitEdit = () => {
     const editedItem = this.state;
     this.props.addItem(editedItem);
@@ -158,6 +201,9 @@ class ItemEditModal extends Component {
     });
   };
 
+  /**
+   * Render the class component
+   */
   render() {
     if (this.props.item !== null) {
       return (
@@ -202,6 +248,10 @@ class ItemEditModal extends Component {
   }
 }
 
+/**
+ * THE BOTTOM THREE FUNCTIONS CONNECT OUR BACKEND
+ * PROP FUNCTIONS TO THE ACTIONS, REDUCERS, AND MONGODB
+ */
 ItemEditModal.propTypes = {
   addItem: PropTypes.func.isRequired,
   deleteItem: PropTypes.func.isRequired

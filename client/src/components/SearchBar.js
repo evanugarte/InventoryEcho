@@ -1,3 +1,6 @@
+/**
+ * This class represents the searchbar that is seen in the inventory view.
+ */
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { sendQuery } from "../actions/itemActions";
@@ -15,12 +18,20 @@ class SearchBar extends Component {
     };
   }
 
+  /**
+  * This function handles a change in the query drop down menu.
+  * @param e the event itself
+  */
   handleQueryChange = (e) => {
     this.setState({
       queryType: e.target.value
     });
   }
 
+  /**
+  * This function sends a query to our itemActions.js file,
+  * to search the database for an item either by barcode or name.
+  */
   sendBarcodeQuery = () => {
     let newQuery = null;
     console.log(this.state.queryType);
@@ -39,17 +50,28 @@ class SearchBar extends Component {
     this.setState({ query: "" });
   };
 
+  /**
+   * This function handles a change in the text box.
+   * @param e the event itself
+   */
   onChange = (e) => {
     this.setState({ query: e.target.value });
-    console.log(e.target.value);
   }
 
+  /**
+   * This function handles an enter key pressed in the text box.
+   * @param e the event itself
+   */
   handleKeyDown = (e) => {
     if (e.which === 13) {
+      //Dont submit the request, instead wait for the search button to be clicked
       e.preventDefault();
     }
   }
 
+  /**
+  * Render the class component
+  */
   render() {
     return (
       <div>

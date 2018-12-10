@@ -1,3 +1,6 @@
+/**
+ * This class represents an item component rendered in the inventory list
+ */
 import React, { Component } from "react";
 import { ListGroupItem, Row, Col, Button } from "reactstrap";
 import { CSSTransition } from "react-transition-group";
@@ -11,6 +14,9 @@ class Item extends Component {
     this.props.toggleShowEditModal(item);
   };
 
+  /**
+   * Render the class component
+   */
   render() {
     return (
       <CSSTransition key={this.state._id} timeout={500} classNames="fade">

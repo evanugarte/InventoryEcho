@@ -1,3 +1,6 @@
+/**
+ * This file allows redux devtools to run our app in chrome without errors.
+ */
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers";

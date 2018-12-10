@@ -1,3 +1,6 @@
+/**
+ * This represents the slideshow homepage for our app
+ */
 import React from "react";
 import { UncontrolledCarousel } from "reactstrap";
 
